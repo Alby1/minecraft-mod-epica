@@ -38,5 +38,5 @@ public class ModItems {
                 .register((itemGroup) -> itemGroup.accept(ModItems.SUSPICIOUS_SUBSTANCE));
     }
 
-    public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties()).component(DataComponents.CONSUMABLE, Consumable.builder().build()));
+    public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties()));
 }
