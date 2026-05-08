@@ -22,5 +22,8 @@ public class ModEpica implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 
 		ModItems.initialize();
+		ModBlocks.initialize();
+		ModBlockEntities.initialize();
+		ModMenuType.initialize();
 	}
 }
