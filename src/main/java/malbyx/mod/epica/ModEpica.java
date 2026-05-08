@@ -25,5 +25,6 @@ public class ModEpica implements ModInitializer {
 		ModBlocks.initialize();
 		ModBlockEntities.initialize();
 		ModMenuType.initialize();
+		ModEntities.initialize();
 	}
 }
