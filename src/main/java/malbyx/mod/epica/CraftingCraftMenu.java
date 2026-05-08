@@ -4,9 +4,9 @@ import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -35,6 +36,8 @@ public class CraftingCraftMenu extends AbstractCraftingMenu {
     private final Player player;
     private boolean placingRecipe;
 
+    private CraftingCraftBlockEntity craftingCraftBlockEntity;
+
     public CraftingCraftMenu(int i, Inventory inventory) {
         this(i, inventory, ContainerLevelAccess.NULL);
     }
@@ -48,8 +51,14 @@ public class CraftingCraftMenu extends AbstractCraftingMenu {
         this.addStandardInventorySlots(inventory, 8, 84);
     }
 
+    public CraftingCraftMenu(int i, Inventory inventory, ContainerLevelAccess containerLevelAccess, CraftingCraftBlockEntity craftingCraftBlockEntity) {
+        this(i, inventory, containerLevelAccess);
+
+        this.craftingCraftBlockEntity = craftingCraftBlockEntity;
+    }
+
     @Override
-    public ItemStack quickMoveStack(Player player, int slotIndex) {
+    public @NonNull ItemStack quickMoveStack(Player player, int slotIndex) {
 
         Slot slot = this.slots.get(slotIndex);
 
@@ -61,11 +70,11 @@ public class CraftingCraftMenu extends AbstractCraftingMenu {
         ItemStack clicked = stack.copy();
 
 
-        if (slotIndex < craftSlots.getContainerSize()) {
-            if (!this.moveItemStackTo(stack, craftSlots.getContainerSize(), this.slots.size(), true)) {
+        if (slotIndex < craftingCraftBlockEntity.getContainerSize()) {
+            if (!this.moveItemStackTo(stack, craftingCraftBlockEntity.getContainerSize(), this.slots.size(), true)) {
                 return ItemStack.EMPTY;
             }
-        } else if (!this.moveItemStackTo(stack, 0, craftSlots.getContainerSize(), false)) {
+        } else if (!this.moveItemStackTo(stack, 0, craftingCraftBlockEntity.getContainerSize(), false)) {
             return ItemStack.EMPTY;
         }
 
@@ -83,7 +92,7 @@ public class CraftingCraftMenu extends AbstractCraftingMenu {
         return stillValid(this.access, player, Blocks.CRAFTING_TABLE);
     }
 
-    protected static void slotChangedCraftingGrid(AbstractContainerMenu abstractContainerMenu, ServerLevel serverLevel, Player player, CraftingContainer craftingContainer, ResultContainer resultContainer, @Nullable RecipeHolder<CraftingRecipe> recipeHolder) {
+    protected static void slotChangedCraftingGrid(AbstractContainerMenu abstractContainerMenu, ServerLevel serverLevel, Player player, CraftingCraftBlockEntity craftingContainer, ResultContainer resultContainer, @Nullable RecipeHolder<CraftingRecipe> recipeHolder) {
         CraftingInput craftingInput = craftingContainer.asCraftInput();
         ServerPlayer serverPlayer = (ServerPlayer)player;
         ItemStack itemStack = ItemStack.EMPTY;
@@ -108,7 +117,7 @@ public class CraftingCraftMenu extends AbstractCraftingMenu {
         if (!this.placingRecipe) {
             var level = this.player.level();
             if (level instanceof ServerLevel serverLevel)
-                slotChangedCraftingGrid(this, serverLevel, this.player, (CraftingContainer)this.craftSlots, this.resultSlots, (RecipeHolder)null);
+                slotChangedCraftingGrid(this, serverLevel, this.player, this.craftingCraftBlockEntity, this.resultSlots, (RecipeHolder)null);
         }
 
     }
@@ -127,5 +136,22 @@ public class CraftingCraftMenu extends AbstractCraftingMenu {
 
     protected Player owner() {
         return this.player;
+    }
+
+    @Override
+    public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
+        //this.craftSlots.fillStackedContents(stackedItemContents);
+        this.craftingCraftBlockEntity.fillStackedContents(stackedItemContents);
+    }
+
+    @Override
+    protected Slot addResultSlot(Player player, int i, int j) {
+        return this.addSlot(new CraftingCraftResultSlot(player, this.craftingCraftBlockEntity, this.resultSlots, 0, i, j));
+    }
+
+    @Override
+    public void finishPlacingRecipe(ServerLevel serverLevel, RecipeHolder<CraftingRecipe> recipeHolder) {
+        this.placingRecipe = false;
+        slotChangedCraftingGrid(this, serverLevel, this.player, this.craftingCraftBlockEntity, this.resultSlots, recipeHolder);
     }
 }
