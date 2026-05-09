@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      MODRINTH_PROJECT_ID: dshZHalt
     steps:
       - name: checkout repository
         uses: actions/checkout@v6
@@ -51,6 +53,7 @@ jobs:
 
       - name: upload to modrinth
         if: github.event_name == 'release'
+        id: modrinth
         uses: RubixDev/modrinth-upload@v1
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
@@ -58,10 +61,10 @@ jobs:
           name: ${{ github.event.release.name }}
           version: ${{ github.event.release.tag_name }}
           changelog: ${{ github.event.release.body }}
-          project_id: dshZHalt
-          game_versions: 1.21.11     # adjust to your supported versions
-          loaders: fabric                  # adjust to your loader(s): fabric, forge, quilt, neoforge…
-          release_type: release            # release | beta | alpha
+          project_id: ${{ env.MODRINTH_PROJECT_ID }}
+          game_versions: 1.21.11
+          loaders: fabric
+          release_type: release
           featured: true
 
       - name: attach jar to github release
@@ -69,3 +72,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: build/libs/${{ steps.findjar.outputs.jarname }}
+          body: |
+            ${{ github.event.release.body }}
+
+            ---
+            📦 [View on Modrinth](https://modrinth.com/mod/${{ env.MODRINTH_PROJECT_ID }}/version/${{ steps.modrinth.outputs.id }})
