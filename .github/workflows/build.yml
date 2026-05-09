@@ -66,6 +66,8 @@ jobs:
           loaders: fabric
           release_type: release
           featured: true
+          client_side: required      # required | optional | unsupported
+          server_side: required      # required | optional | unsupported
 
       - name: attach jar to github release
         if: github.event_name == 'release'
