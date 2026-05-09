@@ -1,10 +1,13 @@
 # Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
+# and submitted pull request. On releases, also uploads the build to Modrinth
+# and attaches the JAR to the GitHub Release.
 
 name: build
-on: [pull_request, push]
+on:
+  pull_request:
+  push:
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -12,19 +15,57 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v6
+
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v6
+
       - name: setup jdk
         uses: actions/setup-java@v5
         with:
           java-version: '25'
           distribution: 'microsoft'
+
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+
       - name: build
         run: ./gradlew build
+
       - name: capture build artifacts
         uses: actions/upload-artifact@v7
         with:
           name: Artifacts
           path: build/libs/
+
+      # --- Modrinth upload (runs only on GitHub releases) ---
+      - name: find primary jar
+        if: github.event_name == 'release'
+        id: findjar
+        run: |
+          JAR="$(find build/libs/ \
+            ! -name "*-dev.jar" \
+            ! -name "*-sources.jar" \
+            ! -name "*-javadoc.jar" \
+            -name "*.jar" -type f -printf "%f\n" | head -n 1)"
+          echo "jarname=$JAR" >> $GITHUB_OUTPUT
+
+      - name: upload to modrinth
+        if: github.event_name == 'release'
+        uses: RubixDev/modrinth-upload@v1
+        with:
+          token: ${{ secrets.MODRINTH_TOKEN }}
+          file_path: build/libs/${{ steps.findjar.outputs.jarname }}
+          name: ${{ github.event.release.name }}
+          version: ${{ github.event.release.tag_name }}
+          changelog: ${{ github.event.release.body }}
+          project_id: YOUR_PROJECT_ID
+          game_versions: 1.21,1.21.1     # adjust to your supported versions
+          loaders: fabric                  # adjust to your loader(s): fabric, forge, quilt, neoforge…
+          release_type: release            # release | beta | alpha
+          featured: true
+
+      - name: attach jar to github release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/libs/${{ steps.findjar.outputs.jarname }}
