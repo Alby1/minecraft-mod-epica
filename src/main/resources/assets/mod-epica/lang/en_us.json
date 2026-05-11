@@ -1,6 +1,6 @@
 {
   "item.mod-epica.suspicious_substance": "Piffy",
   "block.mod-epica.crafting_craft": "Crafting Craft",
-  "entity.mod-epica.fastcart" : "Fast Cart",
-  "item.mod-epica.fastcart" : "Fast Cart"
+  "entity.mod-epica.fast_cart" : "Fast Cart",
+  "item.mod-epica.fast_cart" : "Fast Cart"
 }

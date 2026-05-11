@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "mod-epica:item/fastcart"
+    "layer0": "mod-epica:item/fast_cart"
   }
 }

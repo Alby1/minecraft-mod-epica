@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "mod-epica:item/fastcart"
+    "model": "mod-epica:item/fast_cart"
   }
 }
