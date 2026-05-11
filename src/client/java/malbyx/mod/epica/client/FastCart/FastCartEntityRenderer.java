@@ -1,4 +1,4 @@
-package malbyx.mod.epica.client;
+package malbyx.mod.epica.client.FastCart;
 
 import malbyx.mod.epica.ModEpica;
 import net.minecraft.client.model.geom.ModelLayerLocation;

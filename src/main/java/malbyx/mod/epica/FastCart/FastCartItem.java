@@ -1,4 +1,4 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.FastCart;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;

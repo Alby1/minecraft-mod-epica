@@ -2,10 +2,10 @@ package malbyx.mod.epica.client;
 
 import malbyx.mod.epica.ModEntities;
 import malbyx.mod.epica.ModMenuType;
+import malbyx.mod.epica.client.CraftingCraft.CraftingCraftScreen;
+import malbyx.mod.epica.client.FastCart.FastCartEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 
 public class ModEpicaClient implements ClientModInitializer {

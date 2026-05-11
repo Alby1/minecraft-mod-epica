@@ -1,6 +1,6 @@
-package malbyx.mod.epica.client;
+package malbyx.mod.epica.client.FastCart;
 
-import malbyx.mod.epica.FastCartEntity;
+import malbyx.mod.epica.FastCart.FastCartEntity;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;

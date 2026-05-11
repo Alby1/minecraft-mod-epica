@@ -1,4 +1,4 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.FastCart;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;

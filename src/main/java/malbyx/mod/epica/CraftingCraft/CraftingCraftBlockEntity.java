@@ -1,5 +1,6 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.CraftingCraft;
 
+import malbyx.mod.epica.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;

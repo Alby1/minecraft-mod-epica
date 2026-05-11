@@ -1,5 +1,6 @@
 package malbyx.mod.epica;
 
+import malbyx.mod.epica.CraftingCraft.CraftingCraftBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;

@@ -1,4 +1,4 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.CraftingCraft;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Container;

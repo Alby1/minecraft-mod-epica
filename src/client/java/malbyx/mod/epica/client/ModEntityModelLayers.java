@@ -1,6 +1,7 @@
 package malbyx.mod.epica.client;
 
 import malbyx.mod.epica.ModEpica;
+import malbyx.mod.epica.client.FastCart.FastCartEntityModel;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;

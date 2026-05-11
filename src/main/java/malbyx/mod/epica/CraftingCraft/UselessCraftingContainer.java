@@ -1,4 +1,4 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.CraftingCraft;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedItemContents;

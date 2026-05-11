@@ -1,5 +1,6 @@
 package malbyx.mod.epica;
 
+import malbyx.mod.epica.CraftingCraft.CraftingCraftMenu;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.flag.FeatureFlagSet;

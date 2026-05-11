@@ -1,4 +1,4 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.CraftingCraft;
 
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerLevel;

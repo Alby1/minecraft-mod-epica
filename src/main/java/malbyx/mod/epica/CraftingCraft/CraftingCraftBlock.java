@@ -1,4 +1,4 @@
-package malbyx.mod.epica;
+package malbyx.mod.epica.CraftingCraft;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
