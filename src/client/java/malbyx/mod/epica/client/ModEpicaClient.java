@@ -15,5 +15,7 @@ public class ModEpicaClient implements ClientModInitializer {
 		MenuScreens.register(ModMenuType.CRAFTING_CRAFT, CraftingCraftScreen::new);
 
 		EntityRenderers.register(ModEntities.FAST_CART, (context) -> new FastCartEntityRenderer(context, ModEntityModelLayers.FAST_CART));
+
+		ModEntityModelLayers.registerModelLayers();
 	}
 }
