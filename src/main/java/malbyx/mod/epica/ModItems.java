@@ -59,5 +59,5 @@ public class ModItems {
 
     //public static final BlockItem GOLD_CUP = register("gold_cup2", (properties -> new BlockItem(ModBlocks.GOLD_CUP, properties)), (new Item.Properties().stacksTo(16)));
 
-    public static final Item GOLD_CUP = registerBlock(ModBlocks.GOLD_CUP, (block, properties) -> new BlockItem(block, properties), (new Item.Properties()).stacksTo(16));
+    public static final Item GOLD_CUP = registerBlock(ModBlocks.GOLD_CUP, BlockItem::new, (new Item.Properties()).stacksTo(16));
 }
