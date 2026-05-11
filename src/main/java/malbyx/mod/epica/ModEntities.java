@@ -12,7 +12,7 @@ import net.minecraft.world.entity.MobCategory;
 
 public class ModEntities {
     public static final EntityType<FastCartEntity> FAST_CART = register(
-            "fastcart",
+            "fast_cart",
             EntityType.Builder.<FastCartEntity>of(FastCartEntity::new, MobCategory.MISC)
                     .sized(0.98f, 0.7f)
     );

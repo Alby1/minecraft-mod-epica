@@ -33,10 +33,10 @@ public class ModItems {
                 .register((itemGroup) -> itemGroup.accept(ModItems.SUSPICIOUS_SUBSTANCE));
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS)
-                .register((itemGroup) -> itemGroup.accept(ModItems.FASTCART));
+                .register((itemGroup) -> itemGroup.accept(ModItems.FAST_CART));
     }
 
     public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties()));
 
-    public static final Item FASTCART = register("fastcart", (properties -> new FastCartItem(ModEntities.FAST_CART, properties)), (new Item.Properties()).stacksTo(1));
+    public static final Item FAST_CART = register("fast_cart", (properties -> new FastCartItem(ModEntities.FAST_CART, properties)), (new Item.Properties()).stacksTo(1));
 }

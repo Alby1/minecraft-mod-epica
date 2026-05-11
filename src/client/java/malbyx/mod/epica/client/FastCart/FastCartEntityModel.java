@@ -12,7 +12,6 @@ public class FastCartEntityModel<T extends FastCartEntity> extends MinecartModel
     }
 
     public static LayerDefinition getTexturedModelData() {
-        MeshDefinition modelData = new MeshDefinition();
-        return LayerDefinition.create(modelData, 64, 32);
+        return MinecartModel.createBodyLayer();
     }
 }

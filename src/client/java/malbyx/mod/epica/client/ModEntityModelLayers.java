@@ -7,13 +7,13 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.Identifier;
 
 public class ModEntityModelLayers {
-    public static final ModelLayerLocation FASTCART = createMain("fastcart");
+    public static final ModelLayerLocation FAST_CART = createMain("fast_cart");
 
     private static ModelLayerLocation createMain(String name) {
         return new ModelLayerLocation(Identifier.fromNamespaceAndPath(ModEpica.MOD_ID, name), "main");
     }
 
     public static void registerModelLayers() {
-        EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.FASTCART, FastCartEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.FAST_CART, FastCartEntityModel::getTexturedModelData);
     }
 }

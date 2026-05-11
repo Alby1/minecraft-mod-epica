@@ -14,6 +14,6 @@ public class ModEpicaClient implements ClientModInitializer {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
 		MenuScreens.register(ModMenuType.CRAFTING_CRAFT, CraftingCraftScreen::new);
 
-		EntityRenderers.register(ModEntities.FAST_CART, (context) -> new FastCartEntityRenderer(context, ModEntityModelLayers.FASTCART));
+		EntityRenderers.register(ModEntities.FAST_CART, (context) -> new FastCartEntityRenderer(context, ModEntityModelLayers.FAST_CART));
 	}
 }
