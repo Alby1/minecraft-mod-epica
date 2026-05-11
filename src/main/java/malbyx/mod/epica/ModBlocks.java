@@ -1,6 +1,7 @@
 package malbyx.mod.epica;
 
 import malbyx.mod.epica.CraftingCraft.CraftingCraftBlock;
+import malbyx.mod.epica.GoldCup.GoldCupBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,7 +16,10 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
+
+import static net.minecraft.world.item.Items.registerItem;
 
 public class ModBlocks {
     private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
@@ -38,6 +42,7 @@ public class ModBlocks {
         return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
     }
 
+
     private static ResourceKey<Block> keyOfBlock(String name) {
         return ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(ModEpica.MOD_ID, name));
     }
@@ -47,17 +52,26 @@ public class ModBlocks {
     }
 
     public static void initialize() {
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register((itemGroup) -> {
-            itemGroup.accept(ModBlocks.CRAFTING_CRAFT.asItem());
-        });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
+                .register((itemGroup) -> itemGroup.accept(ModBlocks.CRAFTING_CRAFT.asItem()));
+
     }
 
     public static final Block CRAFTING_CRAFT = register(
             "crafting_craft",
             CraftingCraftBlock::new,
-            BlockBehaviour.Properties.of().sound(SoundType.WOOD).mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD),
+            BlockBehaviour.Properties.of().sound(SoundType.WOOD).mapColor(MapColor.WOOD).strength(2.5F),
             true
     );
+
+    public static final Block GOLD_CUP = register(
+            "gold_cup",
+            GoldCupBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).strength(3.0F, 1200.0F),
+            false
+    );
+
+
 }
 
 
