@@ -7,9 +7,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 
@@ -53,7 +55,7 @@ public class ModItems {
                 .register((itemGroup) -> itemGroup.accept(ModItems.GOLD_CUP));
     }
 
-    public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties()));
+    public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0).alwaysEdible().build())));
 
     public static final Item FAST_CART = register("fast_cart", (properties -> new FastCartItem(ModEntities.FAST_CART, properties)), (new Item.Properties()).stacksTo(1));
 
