@@ -1,5 +1,6 @@
 package malbyx.mod.epica;
 
+import malbyx.mod.epica.CraftingStick.CraftingStick;
 import malbyx.mod.epica.FastCart.FastCartItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
@@ -53,6 +54,9 @@ public class ModItems {
 
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
                 .register((itemGroup) -> itemGroup.accept(ModItems.GOLD_CUP));
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
+                .register((itemGroup) -> itemGroup.accept(ModItems.CRAFTING_STICK));
     }
 
     public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0).alwaysEdible().build())));
@@ -62,4 +66,6 @@ public class ModItems {
     //public static final BlockItem GOLD_CUP = register("gold_cup2", (properties -> new BlockItem(ModBlocks.GOLD_CUP, properties)), (new Item.Properties().stacksTo(16)));
 
     public static final Item GOLD_CUP = registerBlock(ModBlocks.GOLD_CUP, BlockItem::new, (new Item.Properties()).stacksTo(16));
+
+    public static final Item CRAFTING_STICK = register("crafting_stick", CraftingStick::new, (new Item.Properties()));
 }

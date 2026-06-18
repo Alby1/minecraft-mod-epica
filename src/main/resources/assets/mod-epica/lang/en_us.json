@@ -6,5 +6,7 @@
   "entity.mod-epica.fast_cart" : "Fast Cart",
   "item.mod-epica.fast_cart" : "Fast Cart",
 
-  "block.mod-epica.gold_cup" : "Gold Cup"
+  "block.mod-epica.gold_cup" : "Gold Cup",
+
+  "item.mod-epica.crafting_stick" : "Crafting Stick"
 }
