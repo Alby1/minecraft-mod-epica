@@ -1,5 +1,6 @@
 package malbyx.mod.epica.FastCart;
 
+import malbyx.mod.epica.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
@@ -9,9 +10,12 @@ import net.minecraft.world.entity.InterpolationHandler;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.vehicle.minecart.Minecart;
 import net.minecraft.world.entity.vehicle.minecart.MinecartBehavior;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.phys.Vec3;
+import org.jspecify.annotations.NonNull;
 
 public class FastCartEntity extends Minecart {
     public FastCartEntity(EntityType<?> entityType, Level level) {
@@ -120,5 +124,10 @@ public class FastCartEntity extends Minecart {
         }
 
         return vec32;
+    }
+
+    @Override
+    protected @NonNull Item getDropItem() {
+        return ModItems.FAST_CART;
     }
 }
