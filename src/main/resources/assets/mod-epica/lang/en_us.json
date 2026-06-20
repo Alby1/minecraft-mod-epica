@@ -8,5 +8,14 @@
 
   "block.mod-epica.gold_cup" : "Gold Cup",
 
-  "item.mod-epica.crafting_stick" : "Crafting Stick"
+  "item.mod-epica.crafting_stick" : "Crafting Stick",
+
+  "item.mod-epica.guanciale_crudo" : "Raw Pork Pieces",
+  "item.mod-epica.guanciale_cotto" : "Cooked Pork Pieces",
+  "item.mod-epica.pecorino" : "Pecorino Cheese",
+  "item.mod-epica.pecorino_grattugiato" : "Grated Pecorino Cheese",
+  "item.mod-epica.carbonara" : "Carbonara Pasta",
+  "item.mod-epica.maccheroni" : "Raw Maccheroni",
+
+  "item.mod-epica.grattugia" : "Cheese Grater"
 }

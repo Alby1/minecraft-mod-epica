@@ -1,0 +1,21 @@
+{
+  "item.mod-epica.suspicious_substance": "Piffy",
+
+  "block.mod-epica.crafting_craft": "Crafting Craft",
+
+  "entity.mod-epica.fast_cart" : "Fast Cart",
+  "item.mod-epica.fast_cart" : "Fast Cart",
+
+  "block.mod-epica.gold_cup" : "Coppa d'Oro",
+
+  "item.mod-epica.crafting_stick" : "Stick del Crafting",
+
+  "item.mod-epica.guanciale_crudo" : "Guanciale Crudo",
+  "item.mod-epica.guanciale_cotto" : "Guanciale Cotto",
+  "item.mod-epica.pecorino" : "Pecorino",
+  "item.mod-epica.pecorino_grattugiato" : "Pecorino Grattugiato",
+  "item.mod-epica.carbonara" : "Carbonara",
+  "item.mod-epica.maccheroni" : "Maccheroni Crudi",
+
+  "item.mod-epica.grattugia" : "Grattugia"
+}

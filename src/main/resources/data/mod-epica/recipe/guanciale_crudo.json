@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": "minecraft:porkchop"
+  },
+  "result": {
+    "id": "mod-epica:guanciale_crudo"
+  }
+}

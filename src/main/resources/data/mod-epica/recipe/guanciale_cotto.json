@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 0,
+  "cookingtime": 200,
+  "ingredient": "mod-epica:guanciale_crudo",
+  "result": {
+    "id": "mod-epica:guanciale_cotto"
+  }
+}

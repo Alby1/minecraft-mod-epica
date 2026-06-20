@@ -2,6 +2,7 @@ package malbyx.mod.epica;
 
 import malbyx.mod.epica.CraftingStick.CraftingStick;
 import malbyx.mod.epica.FastCart.FastCartItem;
+import malbyx.mod.epica.Grattugia.Grattugia;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,11 +11,10 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MapColor;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -43,20 +43,26 @@ public class ModItems {
         return ResourceKey.create(Registries.ITEM, resourceKey.identifier());
     }
 
+    private static void AddToCreativeTab(ResourceKey<CreativeModeTab> tab, Item item) {
+        ItemGroupEvents.modifyEntriesEvent(tab)
+                .register((itemGroup) -> itemGroup.accept(item));
+    }
+
     public static void initialize() {
-        // Get the event for modifying entries in the ingredients group.
-        // And register an event handler that adds our suspicious item to the ingredients group.
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
-                .register((itemGroup) -> itemGroup.accept(ModItems.SUSPICIOUS_SUBSTANCE));
+        AddToCreativeTab(CreativeModeTabs.INGREDIENTS, ModItems.SUSPICIOUS_SUBSTANCE);
+        AddToCreativeTab(CreativeModeTabs.REDSTONE_BLOCKS, ModItems.FAST_CART);
+        AddToCreativeTab(CreativeModeTabs.BUILDING_BLOCKS, ModItems.GOLD_CUP);
+        AddToCreativeTab(CreativeModeTabs.TOOLS_AND_UTILITIES, ModItems.CRAFTING_STICK);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS)
-                .register((itemGroup) -> itemGroup.accept(ModItems.FAST_CART));
+        AddToCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, ModItems.GUANCIALE_CRUDO);
+        AddToCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, ModItems.GUANCIALE_COTTO);
+        AddToCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, ModItems.PECORINO);
+        AddToCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, ModItems.PECORINO_GRATTUGIATO);
+        AddToCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, ModItems.CARBONARA);
+        AddToCreativeTab(CreativeModeTabs.FOOD_AND_DRINKS, ModItems.MACCHERONI);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
-                .register((itemGroup) -> itemGroup.accept(ModItems.GOLD_CUP));
+        AddToCreativeTab(CreativeModeTabs.TOOLS_AND_UTILITIES, ModItems.GRATTUGIA);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .register((itemGroup) -> itemGroup.accept(ModItems.CRAFTING_STICK));
     }
 
     public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0).alwaysEdible().build())));
@@ -68,4 +74,18 @@ public class ModItems {
     public static final Item GOLD_CUP = registerBlock(ModBlocks.GOLD_CUP, BlockItem::new, (new Item.Properties()).stacksTo(16));
 
     public static final Item CRAFTING_STICK = register("crafting_stick", CraftingStick::new, (new Item.Properties()));
+
+    //carbonara
+
+    public static final Item GUANCIALE_CRUDO = register("guanciale_crudo", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(1).saturationModifier(0).build())));
+    public static final Item GUANCIALE_COTTO = register("guanciale_cotto", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationModifier(4).build())));
+
+    public static final Item GRATTUGIA = register("grattugia", Grattugia::new, (new Item.Properties().stacksTo(1)));
+
+    public static final Item PECORINO = register("pecorino", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(3).saturationModifier(2).build())));
+    public static final Item PECORINO_GRATTUGIATO = register("pecorino_grattugiato", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0).build())));
+
+    public static final Item MACCHERONI = register("maccheroni", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(1).saturationModifier(0).build())));
+
+    public static final Item CARBONARA = register("carbonara", Item::new, (new Item.Properties().food((new FoodProperties.Builder()).nutrition(10).saturationModifier(10).build())));
 }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 0,
+  "cookingtime": 200,
+  "ingredient": "minecraft:milk_bucket",
+  "result": {
+    "id": "mod-epica:pecorino"
+  }
+}

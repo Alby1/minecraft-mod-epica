@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "mod-epica:guanciale_cotto",
+    "mod-epica:pecorino_grattugiato",
+    "mod-epica:maccheroni"
+  ],
+  "result": {
+    "id": "mod-epica:carbonara"
+  }
+}

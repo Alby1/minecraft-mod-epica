@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "mod-epica:grattugia",
+    "mod-epica:pecorino"
+  ],
+  "result": {
+    "id": "mod-epica:pecorino_grattugiato"
+  }
+}
