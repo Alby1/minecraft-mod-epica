@@ -22,7 +22,7 @@ import java.util.function.Function;
 import static net.minecraft.world.item.Items.registerItem;
 
 public class ModBlocks {
-    private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
+    public static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
         // Create a registry key for the block
         ResourceKey<Block> blockKey = keyOfBlock(name);
         // Create the block instance
